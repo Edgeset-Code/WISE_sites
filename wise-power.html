@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WISE Power — Solar, Storage &amp; Microgrids that Pay for Themselves</title>
+<style>
+  :root{
+    --green:#41B04C; --green-deep:#2E8036; --green-darker:#1F5A26;
+    --blue:#2670A4; --blue-deep:#1A4F74;
+    --ink:#0F1F14; --muted:#4F6B57; --line:#E2EEE4; --bg-soft:#F2F9F3;
+    --shadow:0 16px 40px rgba(15,31,20,.08),0 2px 6px rgba(15,31,20,.04);
+    --radius:14px; --maxw:1180px;
+    --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box} body{margin:0;font-family:var(--font-sans);color:var(--ink);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--green-deep);text-decoration:none}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  .top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+  .top-row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 0;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand img{height:34px}
+  .brand .name{font-weight:700;color:var(--green-darker);font-size:15px;letter-spacing:.02em}
+  .brand .sub{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+  .nav a{color:var(--muted);margin-left:22px;font-weight:500;font-size:14px}
+  .nav a:hover{color:var(--ink)}
+  .nav .cta{background:var(--green);color:#0B2418;padding:9px 16px;border-radius:8px;font-weight:700}
+  .nav .cta:hover{background:#4FC55B}
+
+  .hero{
+    background:
+      radial-gradient(900px 520px at 95% -10%, rgba(255,255,255,.4), transparent 60%),
+      radial-gradient(900px 600px at -5% 105%, rgba(38,112,164,.18), transparent 60%),
+      linear-gradient(135deg,#1F5A26 0%, #2E8036 60%, #41B04C 110%);
+    color:#fff;padding:96px 0 110px;position:relative;overflow:hidden
+  }
+  .hero h1{font-size:54px;line-height:1.06;margin:18px 0 18px;letter-spacing:-.015em;max-width:880px}
+  .hero h1 span{color:#D2F4D6}
+  .hero p{font-size:19px;color:#DDF1DF;max-width:680px;margin:0 0 28px}
+  .hero .eyebrow{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#BEEAC2;font-weight:600;padding:6px 12px;border:1px solid rgba(255,255,255,.2);border-radius:999px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid transparent;cursor:pointer}
+  .btn-primary{background:#fff;color:var(--green-darker)}
+  .btn-primary:hover{background:#EAFBEB}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.3);margin-left:10px}
+  .btn-ghost:hover{border-color:#fff}
+  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:64px;padding-top:32px;border-top:1px solid rgba(255,255,255,.15)}
+  .hero-stats .num{font-size:34px;font-weight:700;letter-spacing:-.01em}
+  .hero-stats .lab{color:#BEEAC2;font-size:13px;margin-top:4px}
+  @media (max-width:760px){.hero h1{font-size:36px}.hero-stats{grid-template-columns:repeat(2,1fr)}}
+
+  section{padding:80px 0}
+  section.alt{background:var(--bg-soft)}
+  .eyebrow-dark{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green-deep);font-weight:700}
+  h2{font-size:36px;line-height:1.15;margin:10px 0 14px;letter-spacing:-.012em;max-width:760px}
+  .lead{font-size:18px;color:var(--muted);max-width:720px;margin:0}
+
+  /* Solutions */
+  .sols{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+  @media (max-width:1000px){.sols{grid-template-columns:repeat(2,1fr)}} @media (max-width:600px){.sols{grid-template-columns:1fr}}
+  .sol{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .sol .icon{width:46px;height:46px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--green),var(--green-deep));color:#fff;font-weight:700;font-size:20px;margin-bottom:14px}
+  .sol h3{font-size:17px;margin:0 0 6px}
+  .sol p{color:var(--muted);font-size:14px;margin:0}
+
+  /* Process */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:36px}
+  @media (max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}} @media (max-width:560px){.steps{grid-template-columns:1fr}}
+  .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative}
+  .step .n{font-size:13px;font-weight:700;color:var(--green-deep);letter-spacing:.12em}
+  .step h3{font-size:17px;margin:8px 0 6px}
+  .step p{color:var(--muted);font-size:14px;margin:0}
+
+  /* Case studies */
+  .cases{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:40px}
+  @media (max-width:900px){.cases{grid-template-columns:1fr}}
+  .case{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow)}
+  .case .headline{font-size:36px;font-weight:700;color:var(--green-darker);letter-spacing:-.01em}
+  .case .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .case h3{margin:0;font-size:20px}
+  .case ul{margin:0;padding-left:18px;color:var(--muted)}
+  .case ul li{margin:6px 0}
+
+  /* Trust */
+  .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;align-items:center;margin-top:30px}
+  @media (max-width:760px){.trust{grid-template-columns:repeat(2,1fr)}}
+  .trust .logo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center;color:var(--muted);font-weight:600;font-size:14px;letter-spacing:.02em}
+
+  /* CTA */
+  .cta-band{background:linear-gradient(120deg,#1F5A26,#2E8036);color:#fff;padding:70px 0}
+  .cta-band .row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .cta-band h2{color:#fff;margin:0;font-size:30px;max-width:640px}
+  .cta-band p{color:#C7E9CA;margin:8px 0 0}
+
+  footer{background:#0E1F12;color:#A6C5AC;padding:54px 0 30px}
+  footer .grid4{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+  @media (max-width:900px){footer .grid4{grid-template-columns:1fr 1fr}}
+  footer h5{color:#fff;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px}
+  footer a{color:#A6C5AC;display:block;font-size:14px;padding:4px 0}
+  footer a:hover{color:#fff}
+  .legal{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .endorse{display:flex;align-items:center;gap:8px;color:#A6C5AC;font-size:12px}
+
+  /* ---------- Password gate (stakeholder preview) — self-contained ---------- */
+  #pw-gate * { box-sizing: border-box; }
+  #pw-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    background:
+      radial-gradient(1100px 520px at 80% -20%, rgba(65,176,76,.20), transparent 55%),
+      radial-gradient(900px 600px at -10% 110%, rgba(38,112,164,.20), transparent 55%),
+      linear-gradient(180deg,#0E2A41 0%, #11304B 100%);
+    color: #fff;
+    padding: 24px;
+    transition: opacity .35s ease, visibility .35s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  }
+  #pw-gate.unlocked { opacity: 0; visibility: hidden; pointer-events: none; }
+  #pw-gate .pw-card {
+    background: #fff; color: #0E1A24;
+    max-width: 420px; width: 100%;
+    border-radius: 18px; padding: 36px 32px 30px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4);
+    text-align: center;
+  }
+  #pw-gate .pw-mark { height: 68px; width: auto; margin-bottom: 14px; }
+  #pw-gate .pw-eyebrow {
+    font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+    color: #2E8036; font-weight: 700; margin-bottom: 6px;
+  }
+  #pw-gate h2 { font-size: 22px; margin: 0 0 8px; color: #1A4F74; letter-spacing: -.01em; font-weight: 700; }
+  #pw-gate p.pw-sub { color: #5A7282; font-size: 14px; margin: 0 0 22px; line-height: 1.5; }
+  #pw-gate label { display: block; text-align: left; font-size: 12px; font-weight: 600;
+    color: #1A4F74; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+  #pw-gate input[type="password"] {
+    width: 100%; padding: 12px 14px; font-size: 15px; border-radius: 10px;
+    border: 1.5px solid #E4ECF1; background: #F8FBFD; color: #0E1A24;
+    outline: none; font-family: inherit;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  #pw-gate input[type="password"]:focus { border-color: #2670A4; background: #fff; }
+  #pw-gate button {
+    margin-top: 14px; width: 100%; padding: 12px 18px;
+    background: #1A4F74; color: #fff; border: 0; border-radius: 10px;
+    font-weight: 700; font-size: 15px; cursor: pointer;
+    font-family: inherit;
+    transition: background .15s ease;
+  }
+  #pw-gate button:hover { background: #2670A4; }
+  #pw-gate .pw-err { color: #B52B2B; font-size: 13px; margin-top: 10px; min-height: 18px; font-weight: 500; }
+  #pw-gate .pw-footnote { margin-top: 22px; color: #5A7282; font-size: 12px; }
+  #pw-gate.shake .pw-card { animation: pw-shake .38s ease; }
+  @keyframes pw-shake {
+    10%, 90% { transform: translateX(-2px); }
+    20%, 80% { transform: translateX(4px); }
+    30%, 50%, 70% { transform: translateX(-8px); }
+    40%, 60% { transform: translateX(8px); }
+  }
+  html.pw-locked, html.pw-locked body { overflow: hidden; }
+</style>
+</head>
+<body>
+<!-- ================= Password gate ================= -->
+<!-- Default password: wise2026                                            -->
+<!-- To change: compute SHA-256 hex of your new password and replace       -->
+<!-- CORRECT_HASH in the script below. In any bash terminal:               -->
+<!--     printf '%s' 'your-new-password' | shasum -a 256                   -->
+<!-- Note: this is a client-side gate (deters casual access). For real     -->
+<!-- protection, use server-side auth.                                     -->
+<div id="pw-gate" role="dialog" aria-modal="true" aria-labelledby="pw-title">
+  <div class="pw-card">
+    <img class="pw-mark" src="assets/wise-mark-color.png" alt="WISE"/>
+    <div class="pw-eyebrow">Stakeholder preview</div>
+    <h2 id="pw-title">WISE Energy Group — Brand mockups</h2>
+    <p class="pw-sub">Enter the preview password to view the site mockups. Please don't share this URL outside the review group.</p>
+    <form id="pw-form" autocomplete="off">
+      <label for="pw-input">Password</label>
+      <input id="pw-input" type="password" autocomplete="off" autofocus />
+      <button type="submit">Unlock preview →</button>
+      <div class="pw-err" id="pw-err" aria-live="polite"></div>
+    </form>
+    <div class="pw-footnote">Confidential — for review only.</div>
+  </div>
+</div>
+
+
+<header class="top">
+  <div class="container top-row">
+    <a href="index.html" class="brand">
+      <img src="assets/wise-logo-color.png" alt="WISE Power"/>
+      <div>
+        <div class="name">Power</div>
+        <div class="sub">Solar · Storage · Microgrids</div>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="#solutions">Solutions</a>
+      <a href="#process">How we work</a>
+      <a href="#cases">Case studies</a>
+      <a href="#industries">Industries</a>
+      <a href="weg.html">Parent: WEG</a>
+      <a href="#quote" class="cta">Request a quote</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">WISE Power · A division of WISE Energy Group</span>
+    <h1>Solar, storage, and microgrids — <span>engineered to fit your site.</span></h1>
+    <p>We design clean-energy systems around how your facility actually consumes power. The result: lower bills, grid-outage protection, and a system sized for your real load — not someone else's spec sheet.</p>
+    <a href="#quote" class="btn btn-primary">Request a quote →</a>
+    <a href="#process" class="btn btn-ghost">See our process</a>
+
+    <div class="hero-stats">
+      <div><div class="num">$600K</div><div class="lab">Annual savings · Sporting KC</div></div>
+      <div><div class="num">813 MWh</div><div class="lab">Annual production · Compass</div></div>
+      <div><div class="num">4.57 MW</div><div class="lab">System capacity available</div></div>
+      <div><div class="num">1 day</div><div class="lab">Typical deployment time</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="solutions">
+  <div class="container">
+    <span class="eyebrow-dark">Solutions</span>
+    <h2>Four building blocks. One system, tuned to your facility.</h2>
+    <p class="lead">From a single 20-foot container to a full grid-scale microgrid — we engineer the smallest system that fully solves the problem, then expand as you grow.</p>
+
+    <div class="sols">
+      <div class="sol"><div class="icon">☀</div><h3>Solar PV</h3><p>Custom DC arrays from rooftop to industrial scale. Complete design, layout, and commissioning.</p></div>
+      <div class="sol"><div class="icon">⚡</div><h3>Battery storage (BESS)</h3><p>10 kWh to grid-scale. Containerized, plug-and-play, sized to your peak demand profile.</p></div>
+      <div class="sol"><div class="icon">⌬</div><h3>Microgrids</h3><p>Solar + storage + intelligent dispatch. Energy independence with grid backup protection.</p></div>
+      <div class="sol"><div class="icon">◉</div><h3>IoT monitoring</h3><p>Cloud-based performance, dispatch, and uptime data — shared with the rest of the WEG ecosystem.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="alt">
+  <div class="container">
+    <span class="eyebrow-dark">How we size a project</span>
+    <h2>Every project is different. We engineer solutions that fit — not the other way around.</h2>
+
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>Understand your needs</h3><p>Facility size, load profile, hours of operation, and goals. Where are you paying peak demand charges?</p></div>
+      <div class="step"><div class="n">02</div><h3>Assess the site</h3><p>Our engineers evaluate your location, existing electrical infrastructure, and available space.</p></div>
+      <div class="step"><div class="n">03</div><h3>Design the solution</h3><p>Custom system — one container or many — placed exactly where it's needed. Modeled against your bills.</p></div>
+      <div class="step"><div class="n">04</div><h3>Install &amp; commission</h3><p>End-to-end deployment, typically within days. We manage the full process.</p></div>
+    </div>
+    <p class="lead" style="margin-top:30px"><strong style="color:var(--green-deep)">Real example.</strong> Sporting KC's Children's Mercy Park needed 3 separate containers — not one — because of how meter rooms were distributed through the stadium. Result: $600K saved annually.</p>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="container">
+    <span class="eyebrow-dark">Case studies</span>
+    <h2>Our solutions in action.</h2>
+
+    <div class="cases">
+      <div class="case">
+        <div class="tag">Microgrid · Major League Soccer</div>
+        <div class="headline">$600K saved / year</div>
+        <h3>Sporting KC — Children's Mercy Park</h3>
+        <ul>
+          <li>Full microgrid: solar PV + battery storage</li>
+          <li>3 custom containers across separate meter rooms</li>
+          <li>$600K annual savings on the electric bill</li>
+          <li>Engineering-driven, not one-size-fits-all</li>
+        </ul>
+        <a href="#" style="font-weight:600">Read the case study →</a>
+      </div>
+      <div class="case">
+        <div class="tag">Solar PV · Industrial</div>
+        <div class="headline">813 MWh / year</div>
+        <h3>Compass Minerals — Solar PV Project</h3>
+        <ul>
+          <li>608 kW DC solar system — full design and install</li>
+          <li>813 MWh annual production</li>
+          <li>75.6% system performance ratio</li>
+          <li>Complete PV design, layout, and commissioning</li>
+        </ul>
+        <a href="#" style="font-weight:600">Read the case study →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="industries" class="alt">
+  <div class="container">
+    <span class="eyebrow-dark">Who we serve</span>
+    <h2>Built for commercial, industrial, and critical infrastructure.</h2>
+    <div class="trust">
+      <div class="logo">Commercial &amp; Industrial</div>
+      <div class="logo">Government &amp; DoD</div>
+      <div class="logo">Utilities</div>
+      <div class="logo">Sports &amp; Entertainment</div>
+      <div class="logo">Retail (incl. WISE EV hosts)</div>
+      <div class="logo">Data Centers</div>
+      <div class="logo">Stadiums &amp; Venues</div>
+      <div class="logo">Emerging markets (India, Africa)</div>
+    </div>
+  </div>
+</section>
+
+<section id="quote" class="cta-band">
+  <div class="container row">
+    <div>
+      <h2>Ready to model your savings?</h2>
+      <p>Send us your last 12 months of bills. We'll come back with a sized system and a projected payback.</p>
+    </div>
+    <div>
+      <a href="mailto:kevin@wiseenergygroup.net" class="btn btn-primary">Request a quote →</a>
+      <a href="#" class="btn btn-ghost">Download solutions brochure</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="grid4">
+      <div>
+        <img src="assets/wise-logo-white.png" alt="WISE Power" style="height:38px;margin-bottom:14px"/>
+        <p style="margin:0;font-size:14px;color:#A6C5AC">Powering Tomorrow's Infrastructure — Today.</p>
+        <p style="margin:8px 0 0;font-size:13px;color:#7C9C83">Sales: kevin@wiseenergygroup.net<br/>(913) 424-3011 · (844) 947-3769</p>
+      </div>
+      <div>
+        <h5>Solutions</h5>
+        <a href="#solutions">Solar PV</a>
+        <a href="#solutions">Battery storage</a>
+        <a href="#solutions">Microgrids</a>
+        <a href="#solutions">IoT monitoring</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="#cases">Case studies</a>
+        <a href="#industries">Industries</a>
+        <a href="weg.html">Parent: WEG</a>
+        <a href="#quote">Contact sales</a>
+      </div>
+      <div>
+        <h5>WEG ecosystem</h5>
+        <a href="weg.html">WISE Energy Group</a>
+        <a href="wise-ev.html">WISE EV</a>
+        <a href="nanowise.html">NanoWise</a>
+      </div>
+    </div>
+    <div class="legal">
+      <div>© 2026 WISE Power, a division of WISE Energy Group.</div>
+      <div class="endorse"><span>Part of</span> <strong style="color:#fff">WISE Energy Group</strong></div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // ------------- Password gate logic (shared across all mockup pages) -------------
+  // SHA-256 hash of the current password. Default password: "wise2026"
+  // Replace this string with the hash of your new password.
+  const CORRECT_HASH = 'edd88e9924b5260f29ea4a55d04a394d3d3912ac7fa08f09312b9b22594ce8f3';
+  const STORAGE_KEY = 'weg_preview_unlocked_v1';
+
+  const gate  = document.getElementById('pw-gate');
+  const form  = document.getElementById('pw-form');
+  const input = document.getElementById('pw-input');
+  const err   = document.getElementById('pw-err');
+  const htmlEl = document.documentElement;
+
+  async function sha256Hex(str) {
+    const buf = new TextEncoder().encode(str);
+    const hash = await crypto.subtle.digest('SHA-256', buf);
+    return Array.from(new Uint8Array(hash))
+      .map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  function unlock() {
+    gate.classList.add('unlocked');
+    htmlEl.classList.remove('pw-locked');
+    setTimeout(() => { gate.style.display = 'none'; }, 400);
+  }
+  function lockedState() {
+    htmlEl.classList.add('pw-locked');
+    setTimeout(() => input && input.focus(), 30);
+  }
+  try {
+    if (sessionStorage.getItem(STORAGE_KEY) === '1') { unlock(); }
+    else { lockedState(); }
+  } catch (e) { lockedState(); }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    err.textContent = '';
+    const attempt = (input.value || '').trim();
+    if (!attempt) return;
+    const hash = await sha256Hex(attempt);
+    if (hash === CORRECT_HASH) {
+      try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (_) {}
+      unlock();
+    } else {
+      err.textContent = 'Incorrect password. Please try again.';
+      gate.classList.remove('shake');
+      void gate.offsetWidth;
+      gate.classList.add('shake');
+      input.select();
+    }
+  });
+</script>
+
+</body>
+</html>

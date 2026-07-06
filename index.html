@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WISE Energy Group — Brand & Website Mockups</title>
+<style>
+  :root {
+    --weg-deep: #1A4F74;
+    --weg-blue: #2670A4;
+    --weg-green: #41B04C;
+    --weg-deep-green: #2E8036;
+    --nano-crimson: #8B1A1A;
+    --nano-red: #B52B2B;
+    --nano-silver: #C8C8C8;
+    --ink: #0E1A24;
+    --muted: #58707F;
+    --line: #E4ECF1;
+    --bg-soft: #F4F8FB;
+    --shadow: 0 12px 32px rgba(14,26,36,.08), 0 2px 6px rgba(14,26,36,.04);
+    --radius: 14px;
+    --maxw: 1140px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: var(--font-sans); color: var(--ink); background:#fff; line-height:1.55; }
+  a { color: var(--weg-blue); text-decoration: none; }
+  header.top {
+    background: linear-gradient(180deg,#fff,#F4F8FB);
+    border-bottom: 1px solid var(--line);
+    padding: 28px 0;
+  }
+  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+  h1 { font-size: 40px; line-height: 1.15; margin: 0 0 12px; letter-spacing: -.01em; }
+  h2 { font-size: 28px; margin: 0 0 8px; letter-spacing: -.01em; }
+  h3 { font-size: 18px; margin: 0 0 6px; }
+  p.lead { font-size: 18px; color: var(--muted); max-width: 720px; margin: 0; }
+  .pill { display:inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  .pill-weg { background:#E8EFF6; color: var(--weg-deep); }
+  .pill-power { background:#E6F5E8; color: var(--weg-deep-green); }
+  .pill-ev { background:#E1ECF5; color: var(--weg-deep); }
+  .pill-nano { background:#F6E1E1; color: var(--nano-crimson); }
+  section { padding: 56px 0; }
+  section.alt { background: var(--bg-soft); }
+  .grid { display:grid; gap: 20px; grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 760px){ .grid { grid-template-columns: 1fr; } }
+  .card {
+    background:#fff; border:1px solid var(--line); border-radius: var(--radius);
+    padding: 26px; box-shadow: var(--shadow); display:flex; flex-direction:column; gap:14px;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(14,26,36,.10); }
+  .card .meta { color: var(--muted); font-size: 13px; }
+  .swatch-row { display:flex; gap:6px; margin-top: 4px; }
+  .swatch { width: 22px; height: 22px; border-radius: 6px; border:1px solid rgba(0,0,0,.06); }
+  .btn {
+    display:inline-flex; align-items:center; gap:8px; padding: 10px 18px; border-radius: 10px;
+    font-weight: 600; font-size: 14px; border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary { background: var(--weg-deep); color: #fff; }
+  .btn-ghost { background: transparent; color: var(--weg-deep); border-color: var(--line); }
+  .top-row { display:flex; align-items:center; justify-content:space-between; gap: 20px; flex-wrap: wrap; }
+  .brand { display:flex; align-items:center; gap: 12px; }
+  .brand img { height: 38px; width:auto; }
+  .nav a { color: var(--muted); margin-left: 18px; font-weight: 500; font-size: 14px; }
+  .nav a:hover { color: var(--ink); }
+  footer { padding: 36px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  .footer-row { display:flex; justify-content:space-between; gap: 20px; flex-wrap:wrap; }
+
+  /* ---------- Password gate (stakeholder preview) ---------- */
+  #pw-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    background:
+      radial-gradient(1100px 520px at 80% -20%, rgba(65,176,76,.20), transparent 55%),
+      radial-gradient(900px 600px at -10% 110%, rgba(38,112,164,.20), transparent 55%),
+      linear-gradient(180deg,#0E2A41 0%, #11304B 100%);
+    color: #fff;
+    padding: 24px;
+    transition: opacity .35s ease, visibility .35s ease;
+  }
+  #pw-gate.unlocked { opacity: 0; visibility: hidden; pointer-events: none; }
+  #pw-gate .pw-card {
+    background: #fff; color: var(--ink);
+    max-width: 420px; width: 100%;
+    border-radius: 18px; padding: 36px 32px 30px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4);
+    text-align: center;
+  }
+  #pw-gate .pw-mark { height: 68px; width: auto; margin-bottom: 14px; }
+  #pw-gate .pw-eyebrow {
+    font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--weg-deep-green); font-weight: 700; margin-bottom: 6px;
+  }
+  #pw-gate h2 { font-size: 22px; margin: 0 0 8px; color: var(--weg-deep); letter-spacing: -.01em; }
+  #pw-gate p.pw-sub { color: var(--muted); font-size: 14px; margin: 0 0 22px; line-height: 1.5; }
+  #pw-gate label { display: block; text-align: left; font-size: 12px; font-weight: 600;
+    color: var(--weg-deep); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+  #pw-gate input[type="password"] {
+    width: 100%; padding: 12px 14px; font-size: 15px; border-radius: 10px;
+    border: 1.5px solid var(--line); background: #F8FBFD; color: var(--ink);
+    outline: none; box-sizing: border-box; font-family: var(--font-sans);
+    transition: border-color .15s ease, background .15s ease;
+  }
+  #pw-gate input[type="password"]:focus { border-color: var(--weg-blue); background: #fff; }
+  #pw-gate button {
+    margin-top: 14px; width: 100%; padding: 12px 18px;
+    background: var(--weg-deep); color: #fff; border: 0; border-radius: 10px;
+    font-weight: 700; font-size: 15px; cursor: pointer;
+    transition: background .15s ease;
+  }
+  #pw-gate button:hover { background: var(--weg-blue); }
+  #pw-gate .pw-err { color: #B52B2B; font-size: 13px; margin-top: 10px; min-height: 18px; font-weight: 500; }
+  #pw-gate .pw-footnote { margin-top: 22px; color: var(--muted); font-size: 12px; }
+  #pw-gate.shake .pw-card { animation: pw-shake .38s ease; }
+  @keyframes pw-shake {
+    10%, 90% { transform: translateX(-2px); }
+    20%, 80% { transform: translateX(4px); }
+    30%, 50%, 70% { transform: translateX(-8px); }
+    40%, 60% { transform: translateX(8px); }
+  }
+  html.pw-locked, html.pw-locked body { overflow: hidden; }
+</style>
+</head>
+<body>
+
+<!-- ================= Password gate ================= -->
+<!-- Default password: wise2026                                            -->
+<!-- To change: compute SHA-256 hex of your new password and replace       -->
+<!-- CORRECT_HASH below. In any bash terminal:                             -->
+<!--     printf '%s' 'your-new-password' | shasum -a 256                   -->
+<!-- Note: this is a client-side gate (deters casual access). Anyone who   -->
+<!-- knows a direct URL like weg.html can bypass this by going straight    -->
+<!-- to that file. For real protection, use server-side auth.              -->
+<div id="pw-gate" role="dialog" aria-modal="true" aria-labelledby="pw-title">
+  <div class="pw-card">
+    <img class="pw-mark" src="assets/wise-mark-color.png" alt="WISE"/>
+    <div class="pw-eyebrow">Stakeholder preview</div>
+    <h2 id="pw-title">WISE Energy Group — Brand mockups</h2>
+    <p class="pw-sub">Enter the preview password to view the site mockups. Please don't share this URL outside the review group.</p>
+    <form id="pw-form" autocomplete="off">
+      <label for="pw-input">Password</label>
+      <input id="pw-input" type="password" autocomplete="off" autofocus />
+      <button type="submit">Unlock preview →</button>
+      <div class="pw-err" id="pw-err" aria-live="polite"></div>
+    </form>
+    <div class="pw-footnote">Confidential — for review only.</div>
+  </div>
+</div>
+
+<header class="top">
+  <div class="container top-row">
+    <div class="brand">
+      <img src="assets/wise-mark-color.png" alt="WISE mark"/>
+      <div>
+        <div style="font-weight:700; color:var(--weg-deep)">WISE Energy Group</div>
+        <div style="font-size:12px; color:var(--muted)">Brand &amp; website mockups · v1</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="weg.html">WEG</a>
+      <a href="wise-power.html">WISE Power</a>
+      <a href="wise-ev.html">WISE EV</a>
+      <a href="nanowise.html">NanoWise</a>
+    </nav>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <span class="pill pill-weg">Index · Open any mockup</span>
+    <h1 style="margin-top:14px">Four entities. One visual family. Four sites.</h1>
+    <p class="lead">
+      Each mockup applies the brand architecture documented in the WEG Brand Strategy deck —
+      shared design tokens, consistent layout DNA, and per-division color emphasis.
+      Click into any site below to review the full single-page mockup.
+    </p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="grid">
+
+      <a class="card" href="weg.html" style="text-decoration:none; color:inherit">
+        <span class="pill pill-weg">Corporate parent</span>
+        <h2>WISE Energy Group</h2>
+        <div class="meta">wiseenergygroup.com · Investor &amp; press hub</div>
+        <p>Investor-grade authority. Equal blue/green weight. Tells the multi-division ecosystem story to institutional investors, partners, and press.</p>
+        <div class="swatch-row">
+          <span class="swatch" style="background:#1A4F74"></span>
+          <span class="swatch" style="background:#2670A4"></span>
+          <span class="swatch" style="background:#41B04C"></span>
+        </div>
+        <span style="color:var(--weg-blue); font-weight:600">Open mockup →</span>
+      </a>
+
+      <a class="card" href="wise-power.html" style="text-decoration:none; color:inherit">
+        <span class="pill pill-power">Division 01</span>
+        <h2>WISE Power</h2>
+        <div class="meta">getwisepower.com · Solutions &amp; B2B lead gen</div>
+        <p>Green-dominant. Renewable energy identity. Solar PV, BESS, microgrids, IoT monitoring, DoD and critical-infrastructure focus.</p>
+        <div class="swatch-row">
+          <span class="swatch" style="background:#41B04C"></span>
+          <span class="swatch" style="background:#2E8036"></span>
+          <span class="swatch" style="background:#2670A4"></span>
+        </div>
+        <span style="color:var(--weg-deep-green); font-weight:600">Open mockup →</span>
+      </a>
+
+      <a class="card" href="wise-ev.html" style="text-decoration:none; color:inherit">
+        <span class="pill pill-ev">Division 02</span>
+        <h2>WISE EV</h2>
+        <div class="meta">wise-ev.com · Consumer &amp; partner hub</div>
+        <p>Blue-dominant. Technology and motion. Nationwide ultra-fast Level 3 network, EnRoute app, hub-and-spoke model, CBRE partner.</p>
+        <div class="swatch-row">
+          <span class="swatch" style="background:#2670A4"></span>
+          <span class="swatch" style="background:#1A4F74"></span>
+          <span class="swatch" style="background:#41B04C"></span>
+        </div>
+        <span style="color:var(--weg-blue); font-weight:600">Open mockup →</span>
+      </a>
+
+      <a class="card" href="nanowise.html" style="text-decoration:none; color:inherit">
+        <span class="pill pill-nano">Division 03</span>
+        <h2>NanoWise</h2>
+        <div class="meta">nanowise.com · Innovation platform</div>
+        <p>Dark crimson and silver. Science-forward. Nano-based fire suppression for lithium BESS, EV stations, data centers, and defense.</p>
+        <div class="swatch-row">
+          <span class="swatch" style="background:#8B1A1A"></span>
+          <span class="swatch" style="background:#B52B2B"></span>
+          <span class="swatch" style="background:#C8C8C8"></span>
+        </div>
+        <span style="color:var(--nano-crimson); font-weight:600">Open mockup →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-row">
+    <div>© WISE Energy Group · Powering Tomorrow's Infrastructure — Today.</div>
+    <div>Mockups prepared 2026 · for review</div>
+  </div>
+</footer>
+
+<script>
+  // ------------- Password gate logic -------------
+  // SHA-256 hash of the current password. Default password: "wise2026"
+  // Replace this string with the hash of your new password. See comment above the gate markup.
+  const CORRECT_HASH = 'edd88e9924b5260f29ea4a55d04a394d3d3912ac7fa08f09312b9b22594ce8f3';
+  const STORAGE_KEY = 'weg_preview_unlocked_v1';
+
+  const gate  = document.getElementById('pw-gate');
+  const form  = document.getElementById('pw-form');
+  const input = document.getElementById('pw-input');
+  const err   = document.getElementById('pw-err');
+  const htmlEl = document.documentElement;
+
+  async function sha256Hex(str) {
+    const buf = new TextEncoder().encode(str);
+    const hash = await crypto.subtle.digest('SHA-256', buf);
+    return Array.from(new Uint8Array(hash))
+      .map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function unlock() {
+    gate.classList.add('unlocked');
+    htmlEl.classList.remove('pw-locked');
+    setTimeout(() => { gate.style.display = 'none'; }, 400);
+  }
+
+  function lockedState() {
+    htmlEl.classList.add('pw-locked');
+    setTimeout(() => input && input.focus(), 30);
+  }
+
+  // Already unlocked this session? Skip the gate.
+  try {
+    if (sessionStorage.getItem(STORAGE_KEY) === '1') {
+      unlock();
+    } else {
+      lockedState();
+    }
+  } catch (e) { lockedState(); }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    err.textContent = '';
+    const attempt = (input.value || '').trim();
+    if (!attempt) return;
+    const hash = await sha256Hex(attempt);
+    if (hash === CORRECT_HASH) {
+      try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (_) {}
+      unlock();
+    } else {
+      err.textContent = 'Incorrect password. Please try again.';
+      gate.classList.remove('shake');
+      // trigger reflow so shake animation re-runs
+      void gate.offsetWidth;
+      gate.classList.add('shake');
+      input.select();
+    }
+  });
+</script>
+
+</body>
+</html>

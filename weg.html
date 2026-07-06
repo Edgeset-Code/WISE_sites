@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WISE Energy Group — Powering Tomorrow's Infrastructure, Today</title>
+<style>
+  :root {
+    --brand-deep: #1A4F74;
+    --brand-blue: #2670A4;
+    --brand-green: #41B04C;
+    --brand-deep-green: #2E8036;
+    --ink: #0E1A24;
+    --muted: #5A7282;
+    --line: #E4ECF1;
+    --bg-soft: #F4F8FB;
+    --shadow: 0 16px 40px rgba(14,26,36,.08), 0 2px 6px rgba(14,26,36,.04);
+    --radius: 14px;
+    --maxw: 1180px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-sans);color:var(--ink);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--brand-blue);text-decoration:none}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* Top bar */
+  .top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+  .top-row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 0;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand img{height:34px}
+  .brand .name{font-weight:700;letter-spacing:.02em;color:var(--brand-deep);font-size:15px}
+  .brand .sub{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+  .nav a{color:var(--muted);margin-left:22px;font-weight:500;font-size:14px}
+  .nav a:hover{color:var(--ink)}
+  .nav .cta{background:var(--brand-deep);color:#fff;padding:9px 16px;border-radius:8px}
+  .nav .cta:hover{background:var(--brand-blue)}
+
+  /* Hero */
+  .hero{
+    background:
+      radial-gradient(1100px 520px at 80% -20%, rgba(65,176,76,.18), transparent 55%),
+      radial-gradient(900px 600px at -10% 110%, rgba(38,112,164,.18), transparent 55%),
+      linear-gradient(180deg,#0E2A41 0%, #11304B 100%);
+    color:#fff;padding:96px 0 120px;position:relative;overflow:hidden
+  }
+  .hero h1{font-size:54px;line-height:1.06;margin:18px 0 18px;letter-spacing:-.015em;max-width:880px}
+  .hero h1 span{color:var(--brand-green)}
+  .hero p{font-size:19px;color:#C8D6E1;max-width:680px;margin:0 0 28px}
+  .hero .eyebrow{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#9EBFD6;font-weight:600;padding:6px 12px;border:1px solid rgba(255,255,255,.18);border-radius:999px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid transparent;cursor:pointer}
+  .btn-primary{background:var(--brand-green);color:#0B2418}
+  .btn-primary:hover{background:#4FC55B}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.3);margin-left:10px}
+  .btn-ghost:hover{border-color:#fff}
+  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:64px;padding-top:32px;border-top:1px solid rgba(255,255,255,.12)}
+  .hero-stats .stat .num{font-size:34px;font-weight:700;color:#fff;letter-spacing:-.01em}
+  .hero-stats .stat .lab{color:#9EBFD6;font-size:13px;margin-top:4px}
+  @media (max-width:760px){.hero h1{font-size:36px}.hero-stats{grid-template-columns:repeat(2,1fr)}}
+
+  /* Section */
+  section{padding:80px 0}
+  section.alt{background:var(--bg-soft)}
+  .eyebrow-dark{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-deep-green);font-weight:700}
+  h2{font-size:36px;line-height:1.15;margin:10px 0 14px;letter-spacing:-.012em;max-width:760px}
+  .lead{font-size:18px;color:var(--muted);max-width:720px;margin:0}
+
+  /* Divisions */
+  .div-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+  @media (max-width:900px){.div-grid{grid-template-columns:1fr}}
+  .div-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 30px 26px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform .12s ease, box-shadow .12s ease}
+  .div-card:hover{transform:translateY(-3px);box-shadow:0 22px 48px rgba(14,26,36,.12)}
+  .div-card .accent{position:absolute;top:0;left:0;right:0;height:5px}
+  .div-card.power .accent{background:linear-gradient(90deg,#41B04C,#2E8036)}
+  .div-card.ev    .accent{background:linear-gradient(90deg,#2670A4,#1A4F74)}
+  .div-card.nano  .accent{background:linear-gradient(90deg,#8B1A1A,#B52B2B)}
+  .div-card .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .div-card h3{font-size:22px;margin:8px 0 4px}
+  .div-card .url{font-size:13px;color:var(--brand-blue);margin-bottom:14px;display:block;font-weight:500}
+  .div-card p{color:var(--muted);font-size:14.5px;margin:0 0 20px;flex-grow:1}
+  .div-card .arrow{color:var(--brand-deep);font-weight:600;font-size:14px;margin-top:auto}
+
+  /* Pillars */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+  @media (max-width:900px){.pillars{grid-template-columns:1fr}}
+  .pillar h3{font-size:18px;color:var(--brand-deep);margin-bottom:6px}
+  .pillar p{color:var(--muted);margin:0}
+  .pillar .icon{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--brand-blue),var(--brand-green));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;margin-bottom:14px}
+
+  /* Investors */
+  .inv{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+  @media (max-width:900px){.inv{grid-template-columns:1fr}}
+  .inv-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .inv-stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .inv-stat .num{font-size:32px;font-weight:700;color:var(--brand-deep);letter-spacing:-.01em}
+  .inv-stat .lab{color:var(--muted);font-size:13px;margin-top:4px}
+
+  /* Leadership */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px}
+  @media (max-width:900px){.team{grid-template-columns:1fr}}
+  .person{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#2670A4,#41B04C);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+  .person h4{margin:0;font-size:17px}
+  .person .role{color:var(--muted);font-size:13px;margin-bottom:10px}
+  .person p{margin:0;color:var(--muted);font-size:14px}
+
+  /* Newsroom */
+  .news{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
+  @media (max-width:900px){.news{grid-template-columns:1fr}}
+  .news-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:8px}
+  .news-card .date{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+  .news-card h4{font-size:16px;margin:2px 0 6px;line-height:1.35}
+  .news-card a{font-size:14px;font-weight:600}
+
+  /* CTA band */
+  .cta-band{background:linear-gradient(120deg,#143955,#1A4F74);color:#fff;padding:70px 0}
+  .cta-band .row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .cta-band h2{color:#fff;margin:0;font-size:30px;max-width:640px}
+  .cta-band p{color:#BDD3E2;margin:8px 0 0}
+
+  /* Footer */
+  footer{background:#0B1B27;color:#9EBFD6;padding:54px 0 30px}
+  footer .grid4{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+  @media (max-width:900px){footer .grid4{grid-template-columns:1fr 1fr}}
+  footer h5{color:#fff;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px}
+  footer a{color:#BDD3E2;display:block;font-size:14px;padding:4px 0}
+  footer a:hover{color:#fff}
+  .legal{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  /* ---------- Password gate (stakeholder preview) — self-contained ---------- */
+  #pw-gate * { box-sizing: border-box; }
+  #pw-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    background:
+      radial-gradient(1100px 520px at 80% -20%, rgba(65,176,76,.20), transparent 55%),
+      radial-gradient(900px 600px at -10% 110%, rgba(38,112,164,.20), transparent 55%),
+      linear-gradient(180deg,#0E2A41 0%, #11304B 100%);
+    color: #fff;
+    padding: 24px;
+    transition: opacity .35s ease, visibility .35s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  }
+  #pw-gate.unlocked { opacity: 0; visibility: hidden; pointer-events: none; }
+  #pw-gate .pw-card {
+    background: #fff; color: #0E1A24;
+    max-width: 420px; width: 100%;
+    border-radius: 18px; padding: 36px 32px 30px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4);
+    text-align: center;
+  }
+  #pw-gate .pw-mark { height: 68px; width: auto; margin-bottom: 14px; }
+  #pw-gate .pw-eyebrow {
+    font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+    color: #2E8036; font-weight: 700; margin-bottom: 6px;
+  }
+  #pw-gate h2 { font-size: 22px; margin: 0 0 8px; color: #1A4F74; letter-spacing: -.01em; font-weight: 700; }
+  #pw-gate p.pw-sub { color: #5A7282; font-size: 14px; margin: 0 0 22px; line-height: 1.5; }
+  #pw-gate label { display: block; text-align: left; font-size: 12px; font-weight: 600;
+    color: #1A4F74; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+  #pw-gate input[type="password"] {
+    width: 100%; padding: 12px 14px; font-size: 15px; border-radius: 10px;
+    border: 1.5px solid #E4ECF1; background: #F8FBFD; color: #0E1A24;
+    outline: none; font-family: inherit;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  #pw-gate input[type="password"]:focus { border-color: #2670A4; background: #fff; }
+  #pw-gate button {
+    margin-top: 14px; width: 100%; padding: 12px 18px;
+    background: #1A4F74; color: #fff; border: 0; border-radius: 10px;
+    font-weight: 700; font-size: 15px; cursor: pointer;
+    font-family: inherit;
+    transition: background .15s ease;
+  }
+  #pw-gate button:hover { background: #2670A4; }
+  #pw-gate .pw-err { color: #B52B2B; font-size: 13px; margin-top: 10px; min-height: 18px; font-weight: 500; }
+  #pw-gate .pw-footnote { margin-top: 22px; color: #5A7282; font-size: 12px; }
+  #pw-gate.shake .pw-card { animation: pw-shake .38s ease; }
+  @keyframes pw-shake {
+    10%, 90% { transform: translateX(-2px); }
+    20%, 80% { transform: translateX(4px); }
+    30%, 50%, 70% { transform: translateX(-8px); }
+    40%, 60% { transform: translateX(8px); }
+  }
+  html.pw-locked, html.pw-locked body { overflow: hidden; }
+</style>
+</head>
+<body>
+<!-- ================= Password gate ================= -->
+<!-- Default password: wise2026                                            -->
+<!-- To change: compute SHA-256 hex of your new password and replace       -->
+<!-- CORRECT_HASH in the script below. In any bash terminal:               -->
+<!--     printf '%s' 'your-new-password' | shasum -a 256                   -->
+<!-- Note: this is a client-side gate (deters casual access). For real     -->
+<!-- protection, use server-side auth.                                     -->
+<div id="pw-gate" role="dialog" aria-modal="true" aria-labelledby="pw-title">
+  <div class="pw-card">
+    <img class="pw-mark" src="assets/wise-mark-color.png" alt="WISE"/>
+    <div class="pw-eyebrow">Stakeholder preview</div>
+    <h2 id="pw-title">WISE Energy Group — Brand mockups</h2>
+    <p class="pw-sub">Enter the preview password to view the site mockups. Please don't share this URL outside the review group.</p>
+    <form id="pw-form" autocomplete="off">
+      <label for="pw-input">Password</label>
+      <input id="pw-input" type="password" autocomplete="off" autofocus />
+      <button type="submit">Unlock preview →</button>
+      <div class="pw-err" id="pw-err" aria-live="polite"></div>
+    </form>
+    <div class="pw-footnote">Confidential — for review only.</div>
+  </div>
+</div>
+
+
+<!-- Top -->
+<header class="top">
+  <div class="container top-row">
+    <a href="index.html" class="brand">
+      <img src="assets/wise-logo-color.png" alt="WISE"/>
+      <div>
+        <div class="name">Energy Group</div>
+        <div class="sub">Corporate</div>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#divisions">Our Divisions</a>
+      <a href="#investors">Investors</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#newsroom">Newsroom</a>
+      <a href="#contact" class="cta">Investor inquiry</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">Wise Energy Group · Multi-division clean-energy platform</span>
+    <h1>Powering tomorrow's infrastructure — <span>today.</span></h1>
+    <p>WEG is a vertically integrated clean-energy platform spanning solar PV and storage, EV charging, and applied nanotechnology — delivering complete clean-energy infrastructure to commercial, government, and emerging-market customers.</p>
+    <a href="#contact" class="btn btn-primary">Request the investor brief →</a>
+    <a href="#divisions" class="btn btn-ghost">Explore our divisions</a>
+
+    <div class="hero-stats">
+      <div class="stat"><div class="num">10+</div><div class="lab">Years in renewable energy</div></div>
+      <div class="stat"><div class="num">1.6M</div><div class="lab">DoD users (WillCo legacy)</div></div>
+      <div class="stat"><div class="num">2</div><div class="lab">Foundational energy patents</div></div>
+      <div class="stat"><div class="num">3</div><div class="lab">Market-facing divisions</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <span class="eyebrow-dark">Who we are</span>
+    <h2>One parent company. Three market-facing divisions. One unified ecosystem.</h2>
+    <p class="lead">WEG began as WillCo Technologies — a Kansas City IT firm that grew a cybersecurity program to 1.6 million registered DoD users. In 2016 our founder was awarded patents for a Distributed Energy Source System, launching WISE Power. Today WEG spans solar, storage, EV charging, and nanotechnology — with active projects in the US, India, and Africa.</p>
+
+    <div style="height:48px"></div>
+    <div class="pillars">
+      <div class="pillar"><div class="icon">P</div><h3>Patented technology</h3><p>Two foundational energy patents in Distributed Energy Source and Energy Storage Systems.</p></div>
+      <div class="pillar"><div class="icon">G</div><h3>Government-grade trust</h3><p>1.6M DoD-registered users via WillCo. Direct engagement with India's Ministry of Energy.</p></div>
+      <div class="pillar"><div class="icon">∞</div><h3>Cross-division flywheel</h3><p>Power, EV, and Nano reinforce each other — every site is a showcase for the next sale.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Divisions -->
+<section id="divisions" class="alt">
+  <div class="container">
+    <span class="eyebrow-dark">Our divisions</span>
+    <h2>Three businesses. One investment thesis.</h2>
+    <p class="lead">Each division stands alone on its market — but together they unlock a combined TAM no single entity could reach. Hover any card to dive in.</p>
+
+    <div class="div-grid">
+      <a href="wise-power.html" class="div-card power" style="text-decoration:none;color:inherit">
+        <div class="accent"></div>
+        <div class="tag">Division 01</div>
+        <h3>WISE Power</h3>
+        <span class="url">getwisepower.com</span>
+        <p>Solar PV, BESS (10kWh–grid scale), microgrids, IoT monitoring. Patented Distributed Energy Source System. DoD &amp; critical infrastructure.</p>
+        <span class="arrow">Explore Power →</span>
+      </a>
+      <a href="wise-ev.html" class="div-card ev" style="text-decoration:none;color:inherit">
+        <div class="accent"></div>
+        <div class="tag">Division 02</div>
+        <h3>WISE EV</h3>
+        <span class="url">wise-ev.com</span>
+        <p>Nationwide EV charging network. Ultra-Fast Level 3. EnRoute app. Hub-and-Spoke model. CBRE installation partner. 300–500 site pipeline.</p>
+        <span class="arrow">Explore EV →</span>
+      </a>
+      <a href="nanowise.html" class="div-card nano" style="text-decoration:none;color:inherit">
+        <div class="accent"></div>
+        <div class="tag">Division 03 · New</div>
+        <h3>NanoWise</h3>
+        <span class="url">nanowise.com</span>
+        <p>Applied nanotechnology. Flagship: nano-based fire suppression for lithium BESS, EV stations, data centers, and defense applications.</p>
+        <span class="arrow">Explore NanoWise →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Investors -->
+<section id="investors">
+  <div class="container">
+    <div class="inv">
+      <div>
+        <span class="eyebrow-dark">Investor highlights</span>
+        <h2>Capital in place. Projects ready to move.</h2>
+        <p class="lead">A $340M Standby Letter of Credit has been issued for India-specific projects through Ascara, a Singapore-based family office fund manager with a $2B India-only client mandate that aligns directly with our pipeline.</p>
+        <div style="height:20px"></div>
+        <a href="#contact" class="btn btn-primary" style="background:var(--brand-deep);color:#fff">Request investor materials →</a>
+      </div>
+      <div class="inv-stats">
+        <div class="inv-stat"><div class="num">$340M</div><div class="lab">SBLC issued for India pipeline</div></div>
+        <div class="inv-stat"><div class="num">$2B</div><div class="lab">Aligned Ascara India mandate</div></div>
+        <div class="inv-stat"><div class="num">7–8</div><div class="lab">Active emerging-markets opportunities</div></div>
+        <div class="inv-stat"><div class="num">$1.1M</div><div class="lab">Year-1 communications mid-point (~3% of ramp-up)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Leadership -->
+<section id="leadership" class="alt">
+  <div class="container">
+    <span class="eyebrow-dark">Leadership</span>
+    <h2>The team behind WEG.</h2>
+    <div class="team">
+      <div class="person">
+        <div class="avatar">KW</div>
+        <h4>Kevin Williams</h4>
+        <div class="role">Founder &amp; CEO</div>
+        <p>Inventor with patents in Distributed Energy Source Systems. Founded WillCo in 2005, growing its DoD cybersecurity program to 1.6M users. Founding Board member, Transportation Energy Institute.</p>
+      </div>
+      <div class="person">
+        <div class="avatar">CK</div>
+        <h4>Chris King</h4>
+        <div class="role">Advisor</div>
+        <p>Decarbonization entrepreneur. Co-founded 3 software startups (1 IPO, 1 sold to Siemens), $200M+ raised. Holds 3 energy patents. Congressional and UN testimony.</p>
+      </div>
+      <div class="person">
+        <div class="avatar">KR</div>
+        <h4>Kenny Randle</h4>
+        <div class="role">Advisor</div>
+        <p>CEO of Forward Progress. 25+ years in HR outsourcing. Former NFL player (Cleveland Browns &amp; Super Bowl Champion Dallas Cowboys). Keynote speaker and leadership thought leader.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsroom -->
+<section id="newsroom">
+  <div class="container">
+    <span class="eyebrow-dark">Newsroom</span>
+    <h2>Latest from WEG.</h2>
+    <div class="news">
+      <div class="news-card">
+        <div class="date">Press release · Recent</div>
+        <h4>WEG closes Series B; launches four-entity brand architecture.</h4>
+        <p style="color:var(--muted);margin:0;font-size:14px">The platform unifies WISE Power, WISE EV, and NanoWise under a single investor-facing parent.</p>
+        <a href="#">Read release →</a>
+      </div>
+      <div class="news-card">
+        <div class="date">Project announcement</div>
+        <h4>$340M SBLC issued for India pipeline.</h4>
+        <p style="color:var(--muted);margin:0;font-size:14px">Ascara monetization underway; WEG begins delivery on stadium, rail, and commercial-tower opportunities.</p>
+        <a href="#">Read release →</a>
+      </div>
+      <div class="news-card">
+        <div class="date">Customer story</div>
+        <h4>Sporting KC saves $600K/year with WISE Power microgrid.</h4>
+        <p style="color:var(--muted);margin:0;font-size:14px">A 3-container microgrid at Children's Mercy Park demonstrates engineering-driven design.</p>
+        <a href="#">Read case study →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-band">
+  <div class="container row">
+    <div>
+      <h2>Let's build something great together.</h2>
+      <p>Investor inquiries, project partners, and press — reach Kevin directly.</p>
+    </div>
+    <div>
+      <a href="mailto:kevin@wiseenergygroup.net" class="btn btn-primary">Email Kevin →</a>
+      <a href="#" class="btn btn-ghost">Download fact sheet</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="grid4">
+      <div>
+        <img src="assets/wise-logo-white.png" alt="WISE Energy Group" style="height:38px;margin-bottom:14px"/>
+        <p style="margin:0;font-size:14px;color:#9EBFD6">Powering Tomorrow's Infrastructure — Today.</p>
+        <p style="margin:8px 0 0;font-size:13px;color:#7E9BAE">Kevin Williams — President &amp; CEO<br/>kevin@wiseenergygroup.net · (913) 424-3011</p>
+      </div>
+      <div>
+        <h5>Platform</h5>
+        <a href="#about">About WEG</a>
+        <a href="#divisions">Our Divisions</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#newsroom">Newsroom</a>
+      </div>
+      <div>
+        <h5>Divisions</h5>
+        <a href="wise-power.html">WISE Power</a>
+        <a href="wise-ev.html">WISE EV</a>
+        <a href="nanowise.html">NanoWise</a>
+      </div>
+      <div>
+        <h5>For investors</h5>
+        <a href="#investors">Investor materials</a>
+        <a href="#">ESG &amp; impact</a>
+        <a href="#">Annual report</a>
+        <a href="#contact">Contact IR</a>
+      </div>
+    </div>
+    <div class="legal">
+      <div>© 2026 WISE Energy Group. All rights reserved.</div>
+      <div>wiseenergygroup.com · getwisepower.com · wise-ev.com · nanowise.com</div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // ------------- Password gate logic (shared across all mockup pages) -------------
+  // SHA-256 hash of the current password. Default password: "wise2026"
+  // Replace this string with the hash of your new password.
+  const CORRECT_HASH = 'edd88e9924b5260f29ea4a55d04a394d3d3912ac7fa08f09312b9b22594ce8f3';
+  const STORAGE_KEY = 'weg_preview_unlocked_v1';
+
+  const gate  = document.getElementById('pw-gate');
+  const form  = document.getElementById('pw-form');
+  const input = document.getElementById('pw-input');
+  const err   = document.getElementById('pw-err');
+  const htmlEl = document.documentElement;
+
+  async function sha256Hex(str) {
+    const buf = new TextEncoder().encode(str);
+    const hash = await crypto.subtle.digest('SHA-256', buf);
+    return Array.from(new Uint8Array(hash))
+      .map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  function unlock() {
+    gate.classList.add('unlocked');
+    htmlEl.classList.remove('pw-locked');
+    setTimeout(() => { gate.style.display = 'none'; }, 400);
+  }
+  function lockedState() {
+    htmlEl.classList.add('pw-locked');
+    setTimeout(() => input && input.focus(), 30);
+  }
+  try {
+    if (sessionStorage.getItem(STORAGE_KEY) === '1') { unlock(); }
+    else { lockedState(); }
+  } catch (e) { lockedState(); }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    err.textContent = '';
+    const attempt = (input.value || '').trim();
+    if (!attempt) return;
+    const hash = await sha256Hex(attempt);
+    if (hash === CORRECT_HASH) {
+      try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (_) {}
+      unlock();
+    } else {
+      err.textContent = 'Incorrect password. Please try again.';
+      gate.classList.remove('shake');
+      void gate.offsetWidth;
+      gate.classList.add('shake');
+      input.select();
+    }
+  });
+</script>
+
+</body>
+</html>

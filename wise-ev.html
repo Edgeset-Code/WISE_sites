@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WISE EV — Ultra-fast charging, on every route.</title>
+<style>
+  :root{
+    --blue:#2670A4; --blue-deep:#1A4F74; --blue-darker:#0F3553;
+    --green:#41B04C; --green-deep:#2E8036;
+    --ink:#0B1B27; --muted:#516A7C; --line:#E1ECF5; --bg-soft:#F1F7FC;
+    --shadow:0 16px 40px rgba(11,27,39,.08),0 2px 6px rgba(11,27,39,.04);
+    --radius:14px; --maxw:1180px;
+    --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box} body{margin:0;font-family:var(--font-sans);color:var(--ink);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  .top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+  .top-row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 0;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand img{height:38px}
+  .brand .name{font-weight:700;color:var(--blue-deep);font-size:15px;letter-spacing:.02em}
+  .brand .sub{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+  .nav a{color:var(--muted);margin-left:22px;font-weight:500;font-size:14px}
+  .nav a:hover{color:var(--ink)}
+  .nav .cta{background:var(--blue);color:#fff;padding:9px 16px;border-radius:8px;font-weight:700}
+  .nav .cta:hover{background:var(--blue-deep)}
+
+  .hero{
+    background:
+      radial-gradient(900px 520px at 92% -10%, rgba(65,176,76,.20), transparent 60%),
+      radial-gradient(900px 600px at -5% 105%, rgba(255,255,255,.16), transparent 60%),
+      linear-gradient(135deg,#0F3553 0%, #1A4F74 55%, #2670A4 110%);
+    color:#fff;padding:96px 0 110px;position:relative;overflow:hidden
+  }
+  .hero h1{font-size:54px;line-height:1.06;margin:18px 0 18px;letter-spacing:-.015em;max-width:880px}
+  .hero h1 span{color:#7ED88A}
+  .hero p{font-size:19px;color:#C4DDF0;max-width:680px;margin:0 0 28px}
+  .hero .eyebrow{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#9EBFD6;font-weight:600;padding:6px 12px;border:1px solid rgba(255,255,255,.2);border-radius:999px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid transparent;cursor:pointer}
+  .btn-primary{background:var(--green);color:#0B2418}
+  .btn-primary:hover{background:#4FC55B}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.3);margin-left:10px}
+  .btn-ghost:hover{border-color:#fff}
+
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+  /* mini phone mock */
+  .phone{justify-self:end;width:280px;height:560px;border-radius:42px;background:#0E2A41;padding:14px;box-shadow:0 30px 80px rgba(0,0,0,.4);border:8px solid #16384E;position:relative;overflow:hidden}
+  .phone .notch{width:120px;height:24px;background:#0B1B27;border-radius:0 0 14px 14px;margin:0 auto;position:relative;top:-14px}
+  .phone .screen{background:linear-gradient(180deg,#143955,#1A4F74);border-radius:30px;height:100%;padding:20px;display:flex;flex-direction:column;gap:14px;margin-top:-10px}
+  .phone .title{color:#fff;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  .map{flex:1;background:
+    radial-gradient(circle at 30% 30%, rgba(65,176,76,.85) 0 6px, transparent 7px),
+    radial-gradient(circle at 65% 22%, rgba(65,176,76,.85) 0 5px, transparent 6px),
+    radial-gradient(circle at 80% 60%, rgba(65,176,76,.85) 0 6px, transparent 7px),
+    radial-gradient(circle at 22% 70%, rgba(65,176,76,.85) 0 5px, transparent 6px),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.18) 0 8px, transparent 9px),
+    linear-gradient(135deg,#0E2A41,#143955);
+    border-radius:18px;position:relative;overflow:hidden}
+  .map::before,.map::after{content:"";position:absolute;background:rgba(255,255,255,.08);height:1px;left:0;right:0}
+  .map::before{top:33%}.map::after{top:66%}
+  .pill-row{display:flex;gap:8px}
+  .pill-row span{background:rgba(255,255,255,.12);color:#fff;padding:6px 10px;border-radius:999px;font-size:11px}
+  .station{background:rgba(255,255,255,.08);border-radius:12px;padding:10px 12px;color:#fff;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+  .station .lab{display:block;color:#9EBFD6;font-size:10px;margin-top:2px}
+  .green-dot{width:10px;height:10px;border-radius:50%;background:#41B04C;box-shadow:0 0 12px #41B04C}
+
+  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:64px;padding-top:32px;border-top:1px solid rgba(255,255,255,.15)}
+  .hero-stats .num{font-size:34px;font-weight:700;letter-spacing:-.01em}
+  .hero-stats .lab{color:#9EBFD6;font-size:13px;margin-top:4px}
+  @media (max-width:760px){.hero h1{font-size:36px}.hero-stats{grid-template-columns:repeat(2,1fr)}}
+
+  section{padding:80px 0}
+  section.alt{background:var(--bg-soft)}
+  .eyebrow-dark{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:700}
+  h2{font-size:36px;line-height:1.15;margin:10px 0 14px;letter-spacing:-.012em;max-width:760px}
+  .lead{font-size:18px;color:var(--muted);max-width:720px;margin:0}
+
+  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:40px}
+  @media (max-width:760px){.tabs{grid-template-columns:1fr}}
+  .tab{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
+  .tab .label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:700}
+  .tab h3{margin:8px 0 6px;font-size:22px}
+  .tab p{color:var(--muted);margin:0 0 14px}
+  .tab a.btn{padding:11px 18px}
+
+  /* For drivers */
+  .feat{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+  @media (max-width:900px){.feat{grid-template-columns:1fr}}
+  .feat .item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .feat .item .icon{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--blue-deep));color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:12px}
+  .feat .item h3{margin:0 0 6px;font-size:17px}
+  .feat .item p{color:var(--muted);margin:0;font-size:14px}
+
+  /* Hub & spoke */
+  .hub{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center}
+  @media (max-width:900px){.hub{grid-template-columns:1fr}}
+  .hub-art{background:linear-gradient(135deg,#143955,#1A4F74);border-radius:var(--radius);padding:36px;color:#fff;position:relative;min-height:280px}
+  .hub-art .center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 0 0 8px rgba(65,176,76,.2)}
+  .hub-art .spoke{position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.12)}
+  .spoke.s1{top:20%;left:18%}.spoke.s2{top:22%;right:18%}.spoke.s3{bottom:22%;left:14%}.spoke.s4{bottom:18%;right:20%}.spoke.s5{top:50%;left:8%}.spoke.s6{top:50%;right:8%}
+  .hub-art svg{position:absolute;inset:0;width:100%;height:100%}
+
+  /* Partners */
+  .partners{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px}
+  @media (max-width:760px){.partners{grid-template-columns:repeat(2,1fr)}}
+  .partners .logo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center;color:var(--muted);font-weight:700;font-size:14px}
+
+  /* CTA */
+  .cta-band{background:linear-gradient(120deg,#0F3553,#1A4F74);color:#fff;padding:70px 0}
+  .cta-band .row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .cta-band h2{color:#fff;margin:0;font-size:30px;max-width:640px}
+  .cta-band p{color:#BDD3E2;margin:8px 0 0}
+
+  footer{background:#0B1B27;color:#9EBFD6;padding:54px 0 30px}
+  footer .grid4{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+  @media (max-width:900px){footer .grid4{grid-template-columns:1fr 1fr}}
+  footer h5{color:#fff;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px}
+  footer a{color:#BDD3E2;display:block;font-size:14px;padding:4px 0}
+  footer a:hover{color:#fff}
+  .legal{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  /* ---------- Password gate (stakeholder preview) — self-contained ---------- */
+  #pw-gate * { box-sizing: border-box; }
+  #pw-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    background:
+      radial-gradient(1100px 520px at 80% -20%, rgba(65,176,76,.20), transparent 55%),
+      radial-gradient(900px 600px at -10% 110%, rgba(38,112,164,.20), transparent 55%),
+      linear-gradient(180deg,#0E2A41 0%, #11304B 100%);
+    color: #fff;
+    padding: 24px;
+    transition: opacity .35s ease, visibility .35s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  }
+  #pw-gate.unlocked { opacity: 0; visibility: hidden; pointer-events: none; }
+  #pw-gate .pw-card {
+    background: #fff; color: #0E1A24;
+    max-width: 420px; width: 100%;
+    border-radius: 18px; padding: 36px 32px 30px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4);
+    text-align: center;
+  }
+  #pw-gate .pw-mark { height: 68px; width: auto; margin-bottom: 14px; }
+  #pw-gate .pw-eyebrow {
+    font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+    color: #2E8036; font-weight: 700; margin-bottom: 6px;
+  }
+  #pw-gate h2 { font-size: 22px; margin: 0 0 8px; color: #1A4F74; letter-spacing: -.01em; font-weight: 700; }
+  #pw-gate p.pw-sub { color: #5A7282; font-size: 14px; margin: 0 0 22px; line-height: 1.5; }
+  #pw-gate label { display: block; text-align: left; font-size: 12px; font-weight: 600;
+    color: #1A4F74; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+  #pw-gate input[type="password"] {
+    width: 100%; padding: 12px 14px; font-size: 15px; border-radius: 10px;
+    border: 1.5px solid #E4ECF1; background: #F8FBFD; color: #0E1A24;
+    outline: none; font-family: inherit;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  #pw-gate input[type="password"]:focus { border-color: #2670A4; background: #fff; }
+  #pw-gate button {
+    margin-top: 14px; width: 100%; padding: 12px 18px;
+    background: #1A4F74; color: #fff; border: 0; border-radius: 10px;
+    font-weight: 700; font-size: 15px; cursor: pointer;
+    font-family: inherit;
+    transition: background .15s ease;
+  }
+  #pw-gate button:hover { background: #2670A4; }
+  #pw-gate .pw-err { color: #B52B2B; font-size: 13px; margin-top: 10px; min-height: 18px; font-weight: 500; }
+  #pw-gate .pw-footnote { margin-top: 22px; color: #5A7282; font-size: 12px; }
+  #pw-gate.shake .pw-card { animation: pw-shake .38s ease; }
+  @keyframes pw-shake {
+    10%, 90% { transform: translateX(-2px); }
+    20%, 80% { transform: translateX(4px); }
+    30%, 50%, 70% { transform: translateX(-8px); }
+    40%, 60% { transform: translateX(8px); }
+  }
+  html.pw-locked, html.pw-locked body { overflow: hidden; }
+</style>
+</head>
+<body>
+<!-- ================= Password gate ================= -->
+<!-- Default password: wise2026                                            -->
+<!-- To change: compute SHA-256 hex of your new password and replace       -->
+<!-- CORRECT_HASH in the script below. In any bash terminal:               -->
+<!--     printf '%s' 'your-new-password' | shasum -a 256                   -->
+<!-- Note: this is a client-side gate (deters casual access). For real     -->
+<!-- protection, use server-side auth.                                     -->
+<div id="pw-gate" role="dialog" aria-modal="true" aria-labelledby="pw-title">
+  <div class="pw-card">
+    <img class="pw-mark" src="assets/wise-mark-color.png" alt="WISE"/>
+    <div class="pw-eyebrow">Stakeholder preview</div>
+    <h2 id="pw-title">WISE Energy Group — Brand mockups</h2>
+    <p class="pw-sub">Enter the preview password to view the site mockups. Please don't share this URL outside the review group.</p>
+    <form id="pw-form" autocomplete="off">
+      <label for="pw-input">Password</label>
+      <input id="pw-input" type="password" autocomplete="off" autofocus />
+      <button type="submit">Unlock preview →</button>
+      <div class="pw-err" id="pw-err" aria-live="polite"></div>
+    </form>
+    <div class="pw-footnote">Confidential — for review only.</div>
+  </div>
+</div>
+
+
+<header class="top">
+  <div class="container top-row">
+    <a href="index.html" class="brand">
+      <img src="assets/wise-ev-logo.png" alt="WISE EV Charging" style="height:46px"/>
+    </a>
+    <nav class="nav">
+      <a href="#drivers">For drivers</a>
+      <a href="#network">The network</a>
+      <a href="#hosts">For site hosts</a>
+      <a href="#fleets">Fleets</a>
+      <a href="#partners">Partners</a>
+      <a href="weg.html">Parent: WEG</a>
+      <a href="#app" class="cta">Get EnRoute</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">WISE EV · A division of WISE Energy Group</span>
+        <h1>Ultra-fast charging — <span>on every route.</span></h1>
+        <p>A nationwide hub-and-spoke network of Level 3 ultra-fast chargers, powered by Siemens. Find a station, plan a trip, and pay seamlessly with the EnRoute app.</p>
+        <a href="#app" class="btn btn-primary">Download EnRoute →</a>
+        <a href="#hosts" class="btn btn-ghost">Host a site</a>
+      </div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="title">EnRoute <span style="font-weight:400;color:#9EBFD6;font-size:12px">Wed 7:42 PM</span></div>
+          <div class="pill-row"><span>● Live</span><span>4 nearby</span><span>$0.34/kWh</span></div>
+          <div class="map"></div>
+          <div class="station"><div><strong>Hub: I-70 &amp; Cambridge</strong><span class="lab">6 stalls · 350 kW · 0.4 mi</span></div><div class="green-dot"></div></div>
+          <div class="station"><div><strong>Spoke: H&amp;R Block — Plaza</strong><span class="lab">2 stalls · 150 kW · 1.1 mi</span></div><div class="green-dot"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div><div class="num">300–500</div><div class="lab">Site pipeline identified</div></div>
+      <div><div class="num">Level 3</div><div class="lab">Ultra-fast DC charging</div></div>
+      <div><div class="num">CBRE</div><div class="lab">Installation partner</div></div>
+      <div><div class="num">1.6M</div><div class="lab">DoD-grade trust legacy</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="drivers">
+  <div class="container">
+    <span class="eyebrow-dark">For drivers</span>
+    <h2>Plug in, top up, get back on the road.</h2>
+    <div class="feat">
+      <div class="item"><div class="icon">⚡</div><h3>Stops measured in minutes</h3><p>Level 3 ultra-fast charging adds significant range while you grab a coffee.</p></div>
+      <div class="item"><div class="icon">📍</div><h3>EnRoute trip planning</h3><p>Find stations along your route. Live availability. One-tap navigation, one-tap pay.</p></div>
+      <div class="item"><div class="icon">★</div><h3>Rewards at the plug</h3><p>Members earn tax credits, rebates, and preferred rates on smart-energy products via H&amp;R Block.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="network" class="alt">
+  <div class="container">
+    <span class="eyebrow-dark">The network</span>
+    <h2>A hub-and-spoke model — built for the way Americans actually drive.</h2>
+    <p class="lead">Hubs cluster high-power chargers near major corridors and dense commercial areas. Spokes extend the network into retail, municipal, and workplace locations — so a charger is always on the way.</p>
+
+    <div class="hub" style="margin-top:34px">
+      <div class="hub-art" aria-hidden="true">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+          <g stroke="rgba(255,255,255,.25)" stroke-width=".5">
+            <line x1="50" y1="50" x2="22" y2="24"/>
+            <line x1="50" y1="50" x2="78" y2="26"/>
+            <line x1="50" y1="50" x2="18" y2="78"/>
+            <line x1="50" y1="50" x2="82" y2="82"/>
+            <line x1="50" y1="50" x2="10" y2="50"/>
+            <line x1="50" y1="50" x2="90" y2="50"/>
+          </g>
+        </svg>
+        <div class="center">HUB</div>
+        <div class="spoke s1"></div><div class="spoke s2"></div><div class="spoke s3"></div>
+        <div class="spoke s4"></div><div class="spoke s5"></div><div class="spoke s6"></div>
+      </div>
+      <div>
+        <h3 style="margin:0 0 8px;font-size:22px;color:var(--blue-deep)">Hubs for power. Spokes for reach.</h3>
+        <p style="color:var(--muted);margin:0 0 14px">Each hub is a destination — solar canopy, BESS-backed peak shaving, NanoWise-protected fire suppression, retail partner on site. Spokes are partner locations (retail, municipal, fleet depots) that extend density without diluting margin.</p>
+        <p style="color:var(--muted);margin:0">CBRE manages site acquisition and installation. WISE Power installs the BESS layer. Every hub doubles as a showcase for the rest of the WEG ecosystem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hosts">
+  <div class="container">
+    <span class="eyebrow-dark">For site hosts &amp; fleets</span>
+    <h2>Two ways to plug into the network.</h2>
+    <div class="tabs">
+      <div class="tab">
+        <div class="label">Site hosts</div>
+        <h3>Turn parking into recurring revenue.</h3>
+        <p>Retailers, municipalities, and fleet operators host chargers on-site with zero capex. Revenue share, premium foot traffic, and a BESS-backed peak-demand reduction included.</p>
+        <a href="#" class="btn btn-primary" style="background:var(--blue);color:#fff">Become a host →</a>
+      </div>
+      <div class="tab">
+        <div class="label">Fleets</div>
+        <h3>Charging-as-a-service for fleets.</h3>
+        <p>Dedicated stalls, depot installs, and route-aware pricing for delivery, ride-share, and municipal fleets. Telematics integration via the EnRoute platform.</p>
+        <a href="#" class="btn btn-primary" style="background:var(--blue);color:#fff">Talk to fleet sales →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="partners" class="alt">
+  <div class="container">
+    <span class="eyebrow-dark">Ecosystem partners</span>
+    <h2>The names behind every charger.</h2>
+    <div class="partners">
+      <div class="logo">SIEMENS</div>
+      <div class="logo">CBRE</div>
+      <div class="logo">H&amp;R BLOCK</div>
+      <div class="logo">WISE Power BESS</div>
+      <div class="logo">NanoWise fire safety</div>
+      <div class="logo">Transportation Energy Institute</div>
+      <div class="logo">EnRoute by WISE EV</div>
+      <div class="logo">WillCo IoT cloud</div>
+    </div>
+  </div>
+</section>
+
+<section id="app" class="cta-band">
+  <div class="container row">
+    <div>
+      <h2>Get EnRoute. Charge smarter from the first plug.</h2>
+      <p>Live station availability, route planning, one-tap pay, and rewards — all in one app.</p>
+    </div>
+    <div>
+      <a href="#" class="btn btn-primary">Download for iOS</a>
+      <a href="#" class="btn btn-ghost">Download for Android</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="grid4">
+      <div>
+        <img src="assets/wise-logo-white.png" alt="WISE EV" style="height:38px;margin-bottom:14px"/>
+        <p style="margin:0;font-size:14px;color:#9EBFD6">Powering Tomorrow's Infrastructure — Today.</p>
+        <p style="margin:8px 0 0;font-size:13px;color:#7E9BAE">Partner inquiries: kevin@wiseenergygroup.net<br/>(913) 424-3011</p>
+      </div>
+      <div>
+        <h5>Drivers</h5>
+        <a href="#app">EnRoute app</a>
+        <a href="#network">Find a charger</a>
+        <a href="#drivers">Rewards</a>
+        <a href="#">Support</a>
+      </div>
+      <div>
+        <h5>Business</h5>
+        <a href="#hosts">Become a host</a>
+        <a href="#hosts">Fleet services</a>
+        <a href="#partners">Partners</a>
+        <a href="#">Site pipeline</a>
+      </div>
+      <div>
+        <h5>WEG ecosystem</h5>
+        <a href="weg.html">WISE Energy Group</a>
+        <a href="wise-power.html">WISE Power</a>
+        <a href="nanowise.html">NanoWise</a>
+      </div>
+    </div>
+    <div class="legal">
+      <div>© 2026 WISE EV, a division of WISE Energy Group.</div>
+      <div>Part of <strong style="color:#fff">WISE Energy Group</strong></div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // ------------- Password gate logic (shared across all mockup pages) -------------
+  // SHA-256 hash of the current password. Default password: "wise2026"
+  // Replace this string with the hash of your new password.
+  const CORRECT_HASH = 'edd88e9924b5260f29ea4a55d04a394d3d3912ac7fa08f09312b9b22594ce8f3';
+  const STORAGE_KEY = 'weg_preview_unlocked_v1';
+
+  const gate  = document.getElementById('pw-gate');
+  const form  = document.getElementById('pw-form');
+  const input = document.getElementById('pw-input');
+  const err   = document.getElementById('pw-err');
+  const htmlEl = document.documentElement;
+
+  async function sha256Hex(str) {
+    const buf = new TextEncoder().encode(str);
+    const hash = await crypto.subtle.digest('SHA-256', buf);
+    return Array.from(new Uint8Array(hash))
+      .map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  function unlock() {
+    gate.classList.add('unlocked');
+    htmlEl.classList.remove('pw-locked');
+    setTimeout(() => { gate.style.display = 'none'; }, 400);
+  }
+  function lockedState() {
+    htmlEl.classList.add('pw-locked');
+    setTimeout(() => input && input.focus(), 30);
+  }
+  try {
+    if (sessionStorage.getItem(STORAGE_KEY) === '1') { unlock(); }
+    else { lockedState(); }
+  } catch (e) { lockedState(); }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    err.textContent = '';
+    const attempt = (input.value || '').trim();
+    if (!attempt) return;
+    const hash = await sha256Hex(attempt);
+    if (hash === CORRECT_HASH) {
+      try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (_) {}
+      unlock();
+    } else {
+      err.textContent = 'Incorrect password. Please try again.';
+      gate.classList.remove('shake');
+      void gate.offsetWidth;
+      gate.classList.add('shake');
+      input.select();
+    }
+  });
+</script>
+
+</body>
+</html>
